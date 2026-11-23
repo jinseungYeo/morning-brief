@@ -422,7 +422,6 @@
         <p class="panel-desc" id="briefing_status">기사를 가져오는 중입니다.</p>
         <div class="row">
           <button class="action secondary" id="refresh_briefing_btn" type="button">새로고침</button>
-          <button class="action" id="send_briefing_btn" type="button">미리 보내기</button>
         </div>
         <div class="list" id="briefing_list"></div>
       </section>
@@ -979,15 +978,6 @@
         toast(err.message, true);
       }
     });
-    document.getElementById("send_briefing_btn").addEventListener("click", async () => {
-      try {
-        const result = await api("/briefings/today/notify", { method: "POST" });
-        toast(`${result.sent_count}개를 보냈습니다.`);
-      } catch (err) {
-        toast(err.message, true);
-      }
-    });
-
     document.querySelectorAll("#category_choices button").forEach((btn) => {
       btn.addEventListener("click", () => {
         const ranking = btn.dataset.category === "RANKING";
